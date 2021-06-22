@@ -26,7 +26,6 @@ namespace CodeContest
     /// </summary>
     public sealed partial class MainPage : Page, IContestPresent
     {
-        private DispatcherTimer testTimer;
         private Contest contest;
         private int currentIndex;
         private PresentStrategy currentStrategy = PresentStrategy.Sequence;
@@ -43,12 +42,10 @@ namespace CodeContest
 
             Debug.WriteLine(contest.Questions[0].LineCounts);
 
-            testTimer = new DispatcherTimer();
-            testTimer.Interval = new TimeSpan(0, 0, 1);
-            testTimer.Tick += TestTimer_Tick;
-            testTimer.Start();
-
             PlayQuestion();
+
+            PreviousButton.Click += (s, ev) => SelectPrevious();
+            NextButton.Click += (s, ev) => SelectNext();
 
             QuestionPresenter.SizeChanged += ContentBlock_SizeChanged;
         }
@@ -94,15 +91,6 @@ namespace CodeContest
         public void ShowAnswer()
         {
             throw new NotImplementedException();
-        }
-
-        private void TestTimer_Tick(object sender, object e)
-        {
-            Paragraph paragraph = new Paragraph();
-            Run run = new Run();
-            run.Text = "Hello";
-            paragraph.Inlines.Add(run);
-            //ContentBlock.Blocks.Add(paragraph);
         }
     }
 }

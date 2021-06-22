@@ -34,6 +34,8 @@ namespace CodeContest
 
         public void Clear()
         {
+            timer.Stop();
+            timer.Tick -= Timer_Tick;
             ContentBlock.Blocks.Clear();
             currentLine = 0;
         }
@@ -57,6 +59,8 @@ namespace CodeContest
         {
             Run run = new Run();
             run.Text = line;
+            run.FontSize = 20;
+            run.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Consolas");
             Paragraph paragraph = new Paragraph();
             paragraph.Inlines.Add(run);
             ContentBlock.Blocks.Add(paragraph);

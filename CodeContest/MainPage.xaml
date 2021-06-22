@@ -8,9 +8,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <ScrollViewer x:Name="ContentScrollViewer">
+    <Grid Padding="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer x:Name="ContentScrollViewer" Grid.Column="0">
             <local:QuestionPresenter x:Name="QuestionPresenter"/>
         </ScrollViewer>
+        <StackPanel Grid.Column="1">
+            <Button x:Name="PreviousButton" Width="80">Previous</Button>
+            <Button x:Name="NextButton" Width="80" Margin="0,4,0,4">Next</Button>
+        </StackPanel>
     </Grid>
 </Page>
