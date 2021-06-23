@@ -137,9 +137,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Contest\TextFile1 - Copy %282%29.txt" />
-    <Content Include="Assets\Contest\TextFile1 - Copy.txt" />
-    <Content Include="Assets\Contest\TextFile1.txt" />
+    <Content Include="Assets\Contest\HasCircle.java.txt" />
+    <Content Include="Assets\Contest\MergeList.java.txt" />
+    <Content Include="Assets\Contest\RemoveNthFromEnd.txt" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
