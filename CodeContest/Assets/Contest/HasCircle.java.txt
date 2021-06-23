@@ -1,4 +1,5 @@
-﻿
+﻿#define function=hasCycle
+#define variable=slow,fast
 
 public boolean hasCycle(ListNode head) {
     ListNode slow, fast;
