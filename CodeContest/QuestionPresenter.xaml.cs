@@ -23,6 +23,9 @@ namespace CodeContest
         private ISet<string> variables = new HashSet<string>();
         private Trie trie = new Trie();
 
+        private ISet<Run> functionCode = new HashSet<Run>();
+        private ISet<Run> variableCode = new HashSet<Run>();
+
         public QuestionPresenter()
         {
             this.InitializeComponent();
@@ -101,10 +104,16 @@ namespace CodeContest
 
         private void appendLine(string line)
         {
+            Paragraph paragraph = new Paragraph();
+
             String word = "";
             TrieNode node = null;
-            foreach (var ch in line.ToCharArray())
+            var chars = line.ToCharArray();
+            int index = 0; // where the to be added run start
+            //foreach (var ch in line.ToCharArray())
+            for (int i = 0; i < chars.Length; i++)
             {
+                char ch = chars[i];
                 if (word.Equals("")) {
                     node = trie.GetTrieNode(ch.ToString());
                     if (node != null)
@@ -135,17 +144,51 @@ namespace CodeContest
                 if (node.IsWord)
                 {
                     Debug.WriteLine("find word: " + word);
+                    
+                    if (i + 1 - word.Length > index)
+                    {
+                        int wordStartIndex = i - word.Length + 1;
+                        paragraph.Inlines.Add(constructRun(line.Substring(index, wordStartIndex - index)));
+                        paragraph.Inlines.Add(new ReplacableFunction(line.Substring(wordStartIndex, word.Length)).DisplayedRun);
+                    }
+                    else
+                    {
+                        paragraph.Inlines.Add(constructRun(line.Substring(index, word.Length)));
+                    }
+
                     word = "";
                     node = null;
+                    index = i + 1;
                 }
             }
+
+            if (index < chars.Length)
+            {
+                paragraph.Inlines.Add(constructRun(line.Substring(index, line.Length - index)));
+            }
+
+            //run run = new run();
+            //run.text = line;
+            //run.fontsize = 20;
+            //run.fontfamily = new windows.ui.xaml.media.fontfamily("consolas");
+            //paragraph paragraph = new paragraph();
+            //paragraph.inlines.add(run);
+
+            //run run2 = new run();
+            //run2.text = line;
+            //run2.fontsize = 10;
+            //run2.fontfamily = new windows.ui.xaml.media.fontfamily("consolas");
+            //paragraph.inlines.add(run2);
+            ContentBlock.Blocks.Add(paragraph);
+        }
+
+        private Run constructRun(string text)
+        {
             Run run = new Run();
-            run.Text = line;
+            run.Text = text;
             run.FontSize = 20;
             run.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Consolas");
-            Paragraph paragraph = new Paragraph();
-            paragraph.Inlines.Add(run);
-            ContentBlock.Blocks.Add(paragraph);
+            return run;
         }
     }
 }
