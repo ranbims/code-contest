@@ -19,6 +19,8 @@
         <StackPanel Grid.Column="1">
             <Button x:Name="PreviousButton" Width="80">Previous</Button>
             <Button x:Name="NextButton" Width="80" Margin="0,4,0,4">Next</Button>
+            <Button x:Name="PauseButton" Width="80" Margin="0,4,0,4">Pause</Button>
+            <Button x:Name="ResumeButton" Width="80" Margin="0,4,0,4">Resume</Button>
         </StackPanel>
     </Grid>
 </Page>

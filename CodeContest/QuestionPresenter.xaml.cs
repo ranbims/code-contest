@@ -11,7 +11,7 @@ namespace CodeContest
     public sealed partial class QuestionPresenter : UserControl
     {
         private DispatcherTimer timer;
-        private int totalTime = 60000; // milliseconds
+        private int totalTime = 10000; // milliseconds
         private int currentLine;
         private Question currentQuestion;
 
@@ -29,6 +29,16 @@ namespace CodeContest
             int interval = totalTime / lineCount;
             timer.Interval = new TimeSpan(0, 0, 0, 0, interval);
             timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        public void Pause()
+        {
+            timer.Stop();
+        }
+
+        public void Resume()
+        {
             timer.Start();
         }
 
