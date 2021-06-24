@@ -1,0 +1,17 @@
+﻿#define function=hammingWeight
+#define variable=mast,32
+
+public class Solution {
+    public int hammingWeight(int n) {
+        int result = 0;
+        //初始化掩码为1
+        int mask = 1;
+        for (int i = 0; i < 32; i++) {
+            if ((n & mask) != 0) {
+                result++;
+            }
+            mask = mask << 1;
+        }
+        return result;
+    }
+}

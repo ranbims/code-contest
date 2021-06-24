@@ -141,9 +141,19 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Contest\Fib.txt" />
+    <Content Include="Assets\Contest\HamingWeight.txt" />
     <Content Include="Assets\Contest\HasCircle.java.txt" />
+    <Content Include="Assets\Contest\IsPrime.txt" />
+    <Content Include="Assets\Contest\LoaderTask.java.txt" />
+    <Content Include="Assets\Contest\MainProcessState.java.txt" />
+    <Content Include="Assets\Contest\MaxDepth.txt" />
     <Content Include="Assets\Contest\MergeList.java.txt" />
+    <Content Include="Assets\Contest\MergeSort.txt" />
+    <Content Include="Assets\Contest\Pow.txt" />
+    <Content Include="Assets\Contest\QuickSort.txt" />
     <Content Include="Assets\Contest\RemoveNthFromEnd.txt" />
+    <Content Include="Assets\Contest\ReverseString.txt" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

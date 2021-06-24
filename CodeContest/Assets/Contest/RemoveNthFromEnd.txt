@@ -1,4 +1,6 @@
-﻿class Solution {
+﻿#define function=removeNthFromEnd
+
+class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if(head == null || n < 1) return null;   
         ListNode ret = new ListNode();

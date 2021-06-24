@@ -1,0 +1,65 @@
+﻿#define function=MainProcessState
+#define variable=MainProcessInitializer
+
+@SuppressWarnings("unused")
+public class MainProcessState extends MainProcessInitializer {
+
+    public MainProcessState(Context context) {
+    }
+
+    /**
+     * This is where we initialize all of the feature when needed
+     */
+    @Override
+    public void init(Context context) {
+        TraceHelper.beginSection(TAG);
+        //Webview behavior change since Android Pie
+        //https://developer.android.com/reference/android/webkit/WebView.html#setDataDirectorySuffix(java.lang.String)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            WebView.setDataDirectorySuffix(WebviewDataDirectorySuffix);
+            TraceHelper.partitionSection(TAG, "step: Webview.setDataDirectorySuffix for Main process");
+        }
+        super.init(context);
+        TraceHelper.partitionSection(TAG, "step: super init");
+
+        //only enable thread pool monitor in dev, rc, local flavor
+        if (BuildConfig.ENABLE_THREAD_POOL_MONITOR) {
+            ThreadPoolMonitor.enable(true);
+            ThreadPoolMonitor.setLogDelegate(log -> CllLogger.logThreadMonitorEvent(log));
+        }
+
+        TraceHelper.partitionSection(TAG, "step: init threadpoolmonitor");
+
+        // register features into feature manager
+        FeatureManager.getInstance(context).registerFeatures(
+                new com.microsoft.launcher.codegen.launcher3.features.AnnotatedFeatureProviderCollectionImpl());
+        PrivacyConsentManager.getInstance().init(PrivacyConsentHelper.getInstance());
+        TraceHelper.partitionSection(TAG, "step: init FeatureManager PrivacyConsentManager");
+
+        UiThreadHelperFactory.init(UiThreadHelper.getBackgroundLooper(), UiThreadHelper.getHandler(context),
+                Executors.MODEL_EXECUTOR.getLooper());
+        TraceHelper.partitionSection(TAG, "step: init UiThreadHelper");
+
+        CrashHandler.getInstance().init(context);
+        setupCrashHandlerCallbacks(context);
+        TraceHelper.partitionSection(TAG, "step: init CrashHandler");
+
+        ThemeManager.getInstance().init(context, FeatureManager.getInstance().isFeatureEnabled(ENABLE_OPACITY));
+        TraceHelper.partitionSection(TAG, "step: init ThemeManager");
+
+        // ignore the remaining content
+    }
+
+    private void setupCrashHandlerCallbacks(Context context) {
+        // ignore the content
+    }
+
+
+    private static void trackReferralInstall(Context context, MMXReferral mmxReferral) {
+        // ignore the content
+    }
+
+    private void checkAndDisableLauncherWithShortcut(Context context) {
+        // ignore the content
+    }
+}
