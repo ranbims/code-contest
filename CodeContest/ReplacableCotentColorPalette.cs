@@ -9,7 +9,7 @@ namespace CodeContest
 {
     public class ReplacableCotentColorPalette
     {
-        private readonly Color[] predifinedColors = { Colors.Red, Colors.Blue, Colors.Yellow, Colors.Green, Colors.Purple };
+        private readonly Color[] predifinedColors = { Colors.Red, Colors.Blue, Colors.DarkGoldenrod, Colors.DarkKhaki, Colors.DarkSalmon, Colors.Green, Colors.Purple };
         private Color[] randomlizedColors;
         private int index = 0;
         private Dictionary<string, Color> colorMap = new Dictionary<string, Color>();
