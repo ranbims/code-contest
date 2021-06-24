@@ -13,16 +13,29 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer x:Name="ContentScrollViewer" Grid.Column="0">
-            <local:QuestionPresenter x:Name="QuestionPresenter"/>
-        </ScrollViewer>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer x:Name="ContentScrollViewer" Grid.Row="0">
+                <local:QuestionPresenter x:Name="QuestionPresenter"/>
+            </ScrollViewer>
+            <StackPanel x:Name="SettingsPanel" Height="100" Grid.Row="1" Orientation="Horizontal" Visibility="Collapsed">
+                <TextBlock Text="Text Size:" Margin="4,4,4,4" VerticalAlignment="Center"/>
+                <TextBox x:Name="TextSizeInput" Margin="4,4,4,4" VerticalAlignment="Center" InputScope="Number"/>
+                <Button x:Name="TextSizeConfirmButton" Margin="4,4,4,4" VerticalAlignment="Center">Confirm</Button>
+            </StackPanel>
+        </Grid>
         <StackPanel Grid.Column="1">
             <Button x:Name="PreviousButton" Width="80">Previous</Button>
             <Button x:Name="NextButton" Width="80" Margin="0,4,0,4">Next</Button>
             <Button x:Name="PauseButton" Width="80" Margin="0,4,0,4">Pause</Button>
             <Button x:Name="ResumeButton" Width="80" Margin="0,4,0,4">Resume</Button>
+            <Button x:Name="ReplayButton" Width="80" Margin="0,4,0,4">Resume</Button>
             <Button x:Name="ShowTip1Button" Width="80" Margin="0,4,0,4">Tip 1</Button>
             <Button x:Name="ShowTip2Button" Width="80" Margin="0,4,0,4">Tip 2</Button>
+            <Button x:Name="SettingButton" Width="80" Margin="0,4,0,4">Settings</Button>
         </StackPanel>
     </Grid>
 </Page>

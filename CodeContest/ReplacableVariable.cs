@@ -37,7 +37,7 @@ namespace CodeContest
             int len = rawText.Length;
             displayedRun.Text = new string('*', len);
             displayedRun.Foreground = textBrush;
-            displayedRun.FontSize = 20;
+            displayedRun.FontSize = QuestionPresenter.ContentFontSize;
             displayedRun.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Consolas");
         }
     }

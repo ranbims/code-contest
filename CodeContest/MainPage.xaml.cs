@@ -30,6 +30,8 @@ namespace CodeContest
         private int currentIndex;
         private PresentStrategy currentStrategy = PresentStrategy.Sequence;
 
+        public bool IsSettingPanelVisiblie = false;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -48,9 +50,22 @@ namespace CodeContest
             NextButton.Click += (s, ev) => SelectNext();
             PauseButton.Click += (s, ev) => QuestionPresenter.Pause();
             ResumeButton.Click += (s, ev) => QuestionPresenter.Resume();
+            ReplayButton.Click += (s, ev) => PlayQuestion();
             ShowTip1Button.Click += (s, ev) => QuestionPresenter.ShowTip_1();
             ShowTip2Button.Click += (s, ev) => QuestionPresenter.ShowTip_2();
+            SettingButton.Click += (s, ev) => SettingsPanel.Visibility = SettingsPanel.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+            TextSizeConfirmButton.Click += (s, ev) =>
+            {
+                try
+                {
+                    QuestionPresenter.ContentFontSize = int.Parse(TextSizeInput.Text);
+                }
+                catch (Exception)
+                {
 
+                }
+                
+            };
             QuestionPresenter.SizeChanged += ContentBlock_SizeChanged;
         }
 

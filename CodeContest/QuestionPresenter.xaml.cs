@@ -28,10 +28,13 @@ namespace CodeContest
 
         private ReplacableCotentColorPalette palette = new ReplacableCotentColorPalette();
 
+        public static int ContentFontSize { get; set; }
+
         public QuestionPresenter()
         {
             this.InitializeComponent();
             timer = new DispatcherTimer();
+            ContentFontSize = 20;
         }
 
         public void Present(Question question)
@@ -217,7 +220,7 @@ namespace CodeContest
         {
             Run run = new Run();
             run.Text = text;
-            run.FontSize = 20;
+            run.FontSize = ContentFontSize;
             run.FontFamily = new Windows.UI.Xaml.Media.FontFamily("Consolas");
             return run;
         }
