@@ -45,7 +45,8 @@
             <Button x:Name="ReplayButton" Width="80" Margin="0,4,0,4">Resume</Button>
             <Button x:Name="ShowTip1Button" Width="80" Margin="0,4,0,4">Tip 1</Button>
             <Button x:Name="ShowTip2Button" Width="80" Margin="0,4,0,4">Tip 2</Button>
-            <Button x:Name="QuestionListButton" Width="80" Margin="0,4,0,4">Settings</Button>
+            <Button x:Name="ShowAnswerButton" Width="80" Margin="0,4,0,4">Show Answer</Button>
+            <Button x:Name="QuestionListButton" Width="80" Margin="0,4,0,4">Questions</Button>
             <Button x:Name="SettingButton" Width="80" Margin="0,4,0,4">Settings</Button>
         </StackPanel>
     </Grid>

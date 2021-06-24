@@ -12,6 +12,7 @@ namespace CodeContest
         string RawText { get; }
         Run DisplayedRun { get; }
         void ChangeToReplaced();
+        void ChangeToPartialReplaced();
         void ChangeToRaw();
     }
 }

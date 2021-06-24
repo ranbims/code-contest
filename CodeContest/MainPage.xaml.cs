@@ -61,6 +61,7 @@ namespace CodeContest
             ReplayButton.Click += (s, ev) => PlayQuestion();
             ShowTip1Button.Click += (s, ev) => QuestionPresenter.ShowTip_1();
             ShowTip2Button.Click += (s, ev) => QuestionPresenter.ShowTip_2();
+            ShowAnswerButton.Click += (s, ev) => QuestionPresenter.ShowAnwser();
             QuestionListButton.Click += (s, ev) => QuestionList.Visibility = QuestionList.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
             SettingButton.Click += (s, ev) => SettingsPanel.Visibility = SettingsPanel.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
             TextSizeConfirmButton.Click += (s, ev) =>

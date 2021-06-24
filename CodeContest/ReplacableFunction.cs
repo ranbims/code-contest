@@ -28,6 +28,26 @@ namespace CodeContest
             displayedRun.Text = rawText;
         }
 
+        public void ChangeToPartialReplaced()
+        {
+            Random random = new Random();
+            int first = random.Next(0, rawText.Length - 1);
+            int second = rawText.Length > 5 ? random.Next(0, rawText.Length - 1) : -1;
+            var newChars = new Char[rawText.Length];
+            for (int i = 0; i < rawText.Length; i++)
+            {
+                if (i == first || i == second)
+                {
+                    newChars[i] = rawText[i];
+                }
+                else
+                {
+                    newChars[i] = '_';
+                }
+            }
+            displayedRun.Text = new string(newChars);
+        }
+
         public void ChangeToReplaced()
         {
             int len = rawText.Length;

@@ -32,6 +32,11 @@ namespace CodeContest
             displayedRun.Text = rawText;
         }
 
+        public void ChangeToPartialReplaced()
+        {
+            throw new NotImplementedException();
+        }
+
         public void ChangeToReplaced()
         {
             int len = rawText.Length;

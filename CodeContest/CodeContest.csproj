@@ -141,10 +141,13 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Contest\BinarySearch.txt" />
     <Content Include="Assets\Contest\Fib.txt" />
     <Content Include="Assets\Contest\HamingWeight.txt" />
     <Content Include="Assets\Contest\HasCircle.java.txt" />
+    <Content Include="Assets\Contest\InsertionSort.txt" />
     <Content Include="Assets\Contest\IsPrime.txt" />
+    <Content Include="Assets\Contest\LCS.txt" />
     <Content Include="Assets\Contest\LoaderTask.java.txt" />
     <Content Include="Assets\Contest\MainProcessState.java.txt" />
     <Content Include="Assets\Contest\MaxDepth.txt" />

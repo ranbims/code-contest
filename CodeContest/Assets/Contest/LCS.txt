@@ -1,7 +1,6 @@
-﻿#define function=lcs
-#define variable=l,r,mid
+﻿#define function=LongestCommonSubsequence
 
-int lcs( char[] X, char[] Y, int m, int n )
+int LongestCommonSubsequence(char[] X, char[] Y, int m, int n)
 {
     int L[][] = new int[m+1][n+1];
   

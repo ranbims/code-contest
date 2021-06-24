@@ -44,7 +44,15 @@ namespace CodeContest
             currentQuestion = question;
             int lineCount = question.LineCounts;
             int interval = totalTime / lineCount;
-            timer.Interval = new TimeSpan(0, 0, 0, 0, interval);
+            //timer.Interval = new TimeSpan(0, 0, 0, 0, interval);
+            if (lineCount < 30)
+            {
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 3000);
+            }
+            else
+            {
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 400);
+            }
             timer.Tick += Timer_Tick;
             timer.Start();
         }
@@ -210,6 +218,18 @@ namespace CodeContest
 
         public void ShowTip_2()
         {
+            foreach (var replacable in functionCode)
+            {
+                replacable.ChangeToPartialReplaced();
+            }
+        }
+
+        public void ShowAnwser()
+        {
+            foreach (var replacable in variableCode)
+            {
+                replacable.ChangeToRaw();
+            }
             foreach (var replacable in functionCode)
             {
                 replacable.ChangeToRaw();
