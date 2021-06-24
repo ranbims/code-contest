@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace CodeContest
         private Contest contest;
         private int currentIndex;
         private PresentStrategy currentStrategy = PresentStrategy.Sequence;
+        private ObservableCollection<string> questions = new ObservableCollection<string>();
 
         public bool IsSettingPanelVisiblie = false;
 
@@ -40,6 +42,12 @@ namespace CodeContest
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             contest = await Contest.ContestLoader.LoadContestAsync();
+            for (int i = 0; i < contest.QuestionCount; i++)
+            {
+                int index = i + 1;
+                questions.Add($"{index}. {new String('*', contest.Questions[i].Title.Length)}");
+            }
+
             currentIndex = 0;
 
             Debug.WriteLine(contest.Questions[0].LineCounts);
@@ -53,6 +61,7 @@ namespace CodeContest
             ReplayButton.Click += (s, ev) => PlayQuestion();
             ShowTip1Button.Click += (s, ev) => QuestionPresenter.ShowTip_1();
             ShowTip2Button.Click += (s, ev) => QuestionPresenter.ShowTip_2();
+            QuestionListButton.Click += (s, ev) => QuestionList.Visibility = QuestionList.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
             SettingButton.Click += (s, ev) => SettingsPanel.Visibility = SettingsPanel.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
             TextSizeConfirmButton.Click += (s, ev) =>
             {
@@ -110,6 +119,13 @@ namespace CodeContest
         public void ShowAnswer()
         {
             throw new NotImplementedException();
+        }
+
+        private void QuestionList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var splits = (e.ClickedItem as string).Split('.');
+            currentIndex = int.Parse(splits[0]) - 1;
+            PlayQuestion();
         }
     }
 }

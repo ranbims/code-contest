@@ -10,6 +10,6 @@
     d:DesignWidth="400">
 
     <Grid>
-        <RichTextBlock x:Name="ContentBlock"/>
+        <RichTextBlock x:Name="ContentBlock" IsHitTestVisible="False"/>
     </Grid>
 </UserControl>

@@ -10,10 +10,20 @@
 
     <Grid Padding="8">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <ListView x:Name="QuestionList" ItemsSource="{x:Bind questions, Mode=OneWay}" Width="160" Grid.Column="0"
+                  Visibility="Collapsed" Background="Wheat" HorizontalAlignment="Left" ItemClick="QuestionList_ItemClick"
+                  SelectionMode="None" IsItemClickEnabled="True">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <TextBlock Text="{x:Bind}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
@@ -27,7 +37,7 @@
                 <Button x:Name="TextSizeConfirmButton" Margin="4,4,4,4" VerticalAlignment="Center">Confirm</Button>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="2">
             <Button x:Name="PreviousButton" Width="80">Previous</Button>
             <Button x:Name="NextButton" Width="80" Margin="0,4,0,4">Next</Button>
             <Button x:Name="PauseButton" Width="80" Margin="0,4,0,4">Pause</Button>
@@ -35,6 +45,7 @@
             <Button x:Name="ReplayButton" Width="80" Margin="0,4,0,4">Resume</Button>
             <Button x:Name="ShowTip1Button" Width="80" Margin="0,4,0,4">Tip 1</Button>
             <Button x:Name="ShowTip2Button" Width="80" Margin="0,4,0,4">Tip 2</Button>
+            <Button x:Name="QuestionListButton" Width="80" Margin="0,4,0,4">Settings</Button>
             <Button x:Name="SettingButton" Width="80" Margin="0,4,0,4">Settings</Button>
         </StackPanel>
     </Grid>

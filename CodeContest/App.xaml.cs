@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -71,6 +72,12 @@ namespace CodeContest
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+            this.UnhandledException += App_UnhandledException;
+        }
+
+        private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            Debug.WriteLine(e.Exception.Message);
         }
 
         /// <summary>
