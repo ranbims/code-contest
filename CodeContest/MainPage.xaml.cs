@@ -48,6 +48,8 @@ namespace CodeContest
             NextButton.Click += (s, ev) => SelectNext();
             PauseButton.Click += (s, ev) => QuestionPresenter.Pause();
             ResumeButton.Click += (s, ev) => QuestionPresenter.Resume();
+            ShowTip1Button.Click += (s, ev) => QuestionPresenter.ShowTip_1();
+            ShowTip2Button.Click += (s, ev) => QuestionPresenter.ShowTip_2();
 
             QuestionPresenter.SizeChanged += ContentBlock_SizeChanged;
         }

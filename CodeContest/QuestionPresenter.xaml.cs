@@ -23,8 +23,10 @@ namespace CodeContest
         private ISet<string> variables = new HashSet<string>();
         private Trie trie = new Trie();
 
-        private ISet<Run> functionCode = new HashSet<Run>();
-        private ISet<Run> variableCode = new HashSet<Run>();
+        private ISet<ReplacableFunction> functionCode = new HashSet<ReplacableFunction>();
+        private ISet<ReplacableVariable> variableCode = new HashSet<ReplacableVariable>();
+
+        private ReplacableCotentColorPalette palette = new ReplacableCotentColorPalette();
 
         public QuestionPresenter()
         {
@@ -35,6 +37,7 @@ namespace CodeContest
         public void Present(Question question)
         {
             Clear();
+            palette.reset();
             currentQuestion = question;
             int lineCount = question.LineCounts;
             int interval = totalTime / lineCount;
@@ -149,7 +152,19 @@ namespace CodeContest
                     {
                         int wordStartIndex = i - word.Length + 1;
                         paragraph.Inlines.Add(constructRun(line.Substring(index, wordStartIndex - index)));
-                        paragraph.Inlines.Add(new ReplacableFunction(line.Substring(wordStartIndex, word.Length)).DisplayedRun);
+                        string replacedContent = line.Substring(wordStartIndex, word.Length);
+                        if (functions.Contains(replacedContent))
+                        {
+                            var function = new ReplacableFunction(replacedContent);
+                            paragraph.Inlines.Add(function.DisplayedRun);
+                            functionCode.Add(function);
+                        }
+                        else if (variables.Contains(replacedContent))
+                        {
+                            var variable = new ReplacableVariable(replacedContent, palette.getColorByContent(replacedContent));
+                            paragraph.Inlines.Add(variable.DisplayedRun);
+                            variableCode.Add(variable);
+                        }   
                     }
                     else
                     {
@@ -180,6 +195,22 @@ namespace CodeContest
             //run2.fontfamily = new windows.ui.xaml.media.fontfamily("consolas");
             //paragraph.inlines.add(run2);
             ContentBlock.Blocks.Add(paragraph);
+        }
+
+        public void ShowTip_1()
+        {
+            foreach (var replacable in variableCode)
+            {
+                replacable.ChangeToRaw();
+            }
+        }
+
+        public void ShowTip_2()
+        {
+            foreach (var replacable in functionCode)
+            {
+                replacable.ChangeToRaw();
+            }
         }
 
         private Run constructRun(string text)

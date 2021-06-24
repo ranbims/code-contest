@@ -21,6 +21,8 @@
             <Button x:Name="NextButton" Width="80" Margin="0,4,0,4">Next</Button>
             <Button x:Name="PauseButton" Width="80" Margin="0,4,0,4">Pause</Button>
             <Button x:Name="ResumeButton" Width="80" Margin="0,4,0,4">Resume</Button>
+            <Button x:Name="ShowTip1Button" Width="80" Margin="0,4,0,4">Tip 1</Button>
+            <Button x:Name="ShowTip2Button" Width="80" Margin="0,4,0,4">Tip 2</Button>
         </StackPanel>
     </Grid>
 </Page>

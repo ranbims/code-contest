@@ -131,6 +131,8 @@
     </Compile>
     <Compile Include="PresentStratery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReplacableCotentColorPalette.cs" />
+    <Compile Include="ReplacableVariable.cs" />
     <Compile Include="ReplacableFunction.cs" />
   </ItemGroup>
   <ItemGroup>
