@@ -69,6 +69,10 @@ namespace CodeContest
 
         public void Clear()
         {
+            functions.Clear();
+            variables.Clear();
+            functionCode.Clear();
+            variableCode.Clear();
             timer.Stop();
             timer.Tick -= Timer_Tick;
             ContentBlock.Blocks.Clear();

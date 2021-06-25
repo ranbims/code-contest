@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -29,7 +30,20 @@ namespace CodeContest
                     questions.Add(fileContent);
                 }
 
-                return new Contest(questions);
+                return new Contest(Shuffle(questions, 3));
+            }
+
+            public static IList<FileContent> Shuffle(List<FileContent> rawList, int start)
+            {
+                var newList = new List<FileContent>();
+                for (int i = 0; i < start; i++)
+                {
+                    newList.Add(rawList[i]);
+                }
+
+                rawList.RemoveRange(0, start);
+                newList.AddRange(rawList.OrderBy(x => Guid.NewGuid()).ToList());
+                return newList;
             }
         }
     }
